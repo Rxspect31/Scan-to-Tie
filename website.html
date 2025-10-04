@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan to Tie - Revolutionary Shoe Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 80px 60px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .tagline {
+            font-size: 24px;
+            color: #555;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        .shoe-icon {
+            font-size: 120px;
+            margin: 40px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .description {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .download-btn, .laces-btn, .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 60px;
+            border-radius: 50px;
+            font-size: 22px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .laces-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+            padding: 15px 40px;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .download-btn:hover, .laces-btn:hover, .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .laces-btn:hover {
+            box-shadow: 0 15px 40px rgba(245, 87, 108, 0.6);
+        }
+
+        .back-btn:hover {
+            box-shadow: 0 15px 40px rgba(79, 172, 254, 0.6);
+        }
+
+        .download-btn:active, .laces-btn:active, .back-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .founders {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .founders h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .founder-names {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .founder {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        /* Laces Page Styles */
+        .laces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .lace-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .lace-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .lace-visual {
+            height: 150px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+        }
+
+        .plain-laces {
+            background: linear-gradient(to right, #f5f5f5, #e0e0e0);
+        }
+
+        .black-white-laces {
+            background: repeating-linear-gradient(
+                45deg,
+                #000,
+                #000 20px,
+                #fff 20px,
+                #fff 40px
+            );
+        }
+
+        .glowing-laces {
+            background: linear-gradient(135deg, #00f260, #0575e6, #f093fb, #f5576c);
+            animation: glow 2s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(0, 242, 96, 0.6);
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(0, 242, 96, 0.6);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(245, 87, 108, 0.8);
+            }
+        }
+
+        .lace-card h3 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .lace-card p {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 30px;
+            }
+
+            h1 {
+                font-size: 48px;
+            }
+
+            .tagline {
+                font-size: 18px;
+            }
+
+            .shoe-icon {
+                font-size: 80px;
+            }
+
+            .description {
+                font-size: 18px;
+            }
+
+            .download-btn, .laces-btn {
+                padding: 18px 40px;
+                font-size: 18px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .laces-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Scan to Tie</h1>
+                <p class="tagline">The Future of Footwear is Here</p>
+                
+                <div class="shoe-icon">👟</div>
+                
+                <p class="description">
+                    Simply scan your shoe with our app and watch the magic happen. 
+                    Your laces tie themselves automatically. No hands needed.
+                </p>
+                
+                <div class="button-group">
+                    <button class="download-btn" onclick="alert('Coming soon to App Store and Google Play!')">
+                        Download Now
+                    </button>
+                    <button class="laces-btn" onclick="showPage('laces')">
+                        Laces
+                    </button>
+                </div>
+                
+                <div class="founders">
+                    <h2>Founded By</h2>
+                    <div class="founder-names">
+                        <div class="founder">Jayden</div>
+                        <div class="founder">Preston</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Laces Page -->
+        <div id="laces" class="page">
+            <div class="hero">
+                <button class="back-btn" onclick="showPage('home')">← Back</button>
+                
+                <h1>Our Laces</h1>
+                <p class="tagline">Premium Smart Laces for Every Style</p>
+                
+                <div class="laces-grid">
+                    <div class="lace-card">
+                        <div class="lace-visual plain-laces">
+                            ➰
+                        </div>
+                        <h3>Plain Laces</h3>
+                        <p>Classic and clean. Perfect for everyday wear. Available in multiple neutral colors to match any shoe.</p>
+                    </div>
+
+                    <div class="lace-card">
+                        <div class="lace-visual black-white-laces">
+                            🎯
+                        </div>
+                        <h3>Black & White</h3>
+                        <p>Bold checkerboard pattern. Make a statement with this iconic two-tone design that stands out.</p>
+                    </div>
+
+                    <div class="lace-card">
+                        <div class="lace-visual glowing-laces">
+                            ✨
+                        </div>
+                        <h3>Glowing Laces</h3>
+                        <p>Light up the night! Our revolutionary LED-infused laces glow in vibrant colors. Perfect for night runs and parties.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
